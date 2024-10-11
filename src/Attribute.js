@@ -3,10 +3,10 @@ import React from 'react';
 
 function Attribute({ attribute }) {
   return (
-    <tr>
-    <td>{attribute.name}</td>
-    <td>{attribute.value}</td>
-  </tr>
+    <div>
+      
+   {attribute.name}  : {attribute.value}
+</div>
   );
 }
 

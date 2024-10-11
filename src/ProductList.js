@@ -18,13 +18,13 @@ function ProductList({ addToCart }) {
   return (
     <div className="product-list-container">
       <h1>Product List</h1>
-      <ul className="product-list">
+      <div className="product-grid">
         {products.map(product => (   /*Pereiname per visus produktus, esančius products būsenoje. */
-          <li key={product.id} className="product-item">
+          <div key={product.id} className="product-item">
             <Product product={product} addToCart={addToCart} />     {/*Kiekvienam produktui perduodame atskirą „Product“ komponentą su jo duomenimis (product) ir funkcija prekei pridėti į krepšelį (addToCart). */}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
   
     </div>
   );

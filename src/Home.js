@@ -8,7 +8,7 @@ function Home() {
     <div>
       <header>
       <div class="image-logo">
-        <img src="IMG_1664-2.PNG" alt="Logo" class="centered-image"/>
+        <img src="logo.webp" alt="Logo" class="centered-image"/>
         <p>Welcome to Moonpadan Shop</p>
         </div>
         

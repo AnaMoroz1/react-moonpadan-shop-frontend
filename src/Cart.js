@@ -19,7 +19,7 @@ function Cart({ cart, removeFromCart }) {
       </header>
       
       <main>
-        <h2>Your Cart</h2>
+      
         {cart.length > 0 ? (
           <>
             {cart.map((item) => (

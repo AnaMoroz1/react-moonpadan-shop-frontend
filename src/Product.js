@@ -4,7 +4,7 @@ import './Moon.css'; // Importuojame Moon.css
 
 function Product({ product, addToCart }) {
   // Stebime produkto kiekį
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   // Funkcija, keičianti kiekį
   const handleQuantityChange = (event) => {
@@ -12,27 +12,20 @@ function Product({ product, addToCart }) {
   };
 
   return (
-    <li className="product-item"> {/* Priskiriame className "product-item" */}
+    
+    <div className="product-item"> {/* Priskiriame className "product-item" */}
+   
       <h2>{product.name}</h2> {/* H2 ir P elementams dabar taikys mažesnį margin */}
-      <p>Category: {product.category}</p>
-      <p>Description: {product.description}</p>
-      <p>Price: ${product.price}</p>
+      <p><strong>Category: </strong>{product.category}</p>
+      <p><strong>Description: </strong>{product.description}</p>
+      <p><strong>Price:</strong> €{product.price}</p>
 
-      <h3>Lashes:</h3>
-      <div className="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>a</th>
-              <th>b</th>
-            </tr>
-          </thead>
-          <tbody>
+      
+      <div className="attribute-container">
+         
             {product.attributes.map(attr => (
               <Attribute key={attr.id} attribute={attr} />
             ))}
-          </tbody>
-        </table>
       </div> 
 
       {/* Pasirinkimo meniu kiekiui */}
@@ -55,7 +48,8 @@ function Product({ product, addToCart }) {
       }>
         Add to cart 
       </button>
-    </li>
+    </div>
+
   );
 }
 
