@@ -27,6 +27,7 @@ function Product({ product, addToCart }) {
               <Attribute key={attr.id} attribute={attr} />
             ))}
       </div> 
+      
 
       {/* Pasirinkimo meniu kiekiui */}
       <label htmlFor="quantity-select">Quantity: </label>

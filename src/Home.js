@@ -14,7 +14,7 @@ function Home() {
         
       </header>
 
-       {/* Pagrindinė reklaminė juosta */}
+      
       <main>
       <div className="main-banner">
         <div class="fade-in-element">

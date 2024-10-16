@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Product from './Product';
 import './Moon.css'; // Importuojame Moon.css
+import { CartContext } from './CartContext';
 
-function ProductList({ addToCart }) {
-  const [products, setProducts] = useState([]); /*Čia naudojame React „state“ valdymą. products
-                                                 – tai būsena, kurioje saugome produktų sąrašą. 
-                                                 Iš pradžių tai yra tuščias masyvas. setProducts 
-                                                 – funkcija, skirta atnaujinti produktų sąrašą.*/
+function ProductList() {
+  const [products, setProducts] = useState([]); 
+  const { addToCart, cart } = useContext(CartContext);
 
   useEffect(() => {  /*Šis hookas paleidžiamas, kai komponentas pirmą kartą užkraunamas */
     fetch('http://localhost:8080/api/products')
@@ -14,6 +13,10 @@ function ProductList({ addToCart }) {
       .then(data => setProducts(data));  /*Kai gauname duomenis iš serverio, šiuos duomenis priskiriame būsenai (products)*/
   }, 
   []);
+  const getQuantityInCart = (productId) => {
+    const cartItem = cart.find(item => item.product.id === productId);
+    return cartItem ? cartItem.quantity : 0;
+  }
 
   return (
     <div className="product-list-container">
@@ -21,11 +24,14 @@ function ProductList({ addToCart }) {
       <div className="product-grid">
         {products.map(product => (   /*Pereiname per visus produktus, esančius products būsenoje. */
           <div key={product.id} className="product-item">
-            <Product product={product} addToCart={addToCart} />     {/*Kiekvienam produktui perduodame atskirą „Product“ komponentą su jo duomenimis (product) ir funkcija prekei pridėti į krepšelį (addToCart). */}
+            <Product 
+             product={product}
+             addToCart={addToCart} 
+             quantityInCart={getQuantityInCart(product.id)}/>     {/*Kiekvienam produktui perduodame atskirą „Product“ komponentą su jo duomenimis (product) ir funkcija prekei pridėti į krepšelį (addToCart). */}
           </div>
         ))}
       </div>
-  
+     
     </div>
   );
 }

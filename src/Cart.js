@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { CartContext } from './CartContext';
 import './Moon.css';
 
-function Cart({ cart, removeFromCart }) {
 
+function Cart() {
+const { cart, removeFromCart, decreaseQuantity} = useContext(CartContext);
   
   // Funkcija, skaičiuojanti bendrą sumą
   const calculateTotal = () => {
@@ -25,20 +27,28 @@ function Cart({ cart, removeFromCart }) {
             {cart.map((item) => (
               <div className="cart-item" key={item.product.id}>
                 <h3>{item.product.name}</h3>
+                <p>Price : €{item.product.price}</p>
                 <p>Quantity: {item.quantity}</p>
+
+                <button
+                onClick={() => decreaseQuantity (item.product.id)}
+                disabled={item.quantity <= 1} //jeigu kiekis maziau uz 1 button neveiks
+                >Decrease Quantity
+                </button>
+
                 <button onClick={() => removeFromCart(item.product.id)}>Remove</button>
               </div>
             ))}
             {/* Rodo bendrą sumą */}
             <div className="cart-total">
-              <h3>Total: ${calculateTotal().toFixed(2)}</h3> {/* Suma su 2 dešimtainiais skaičiais */}
+              <h3>Total: €{calculateTotal().toFixed(2)}</h3> {/* Suma su 2 dešimtainiais skaičiais */}
             </div>
           </>
         ) : (
           <p>Your cart is empty</p>
         )}
         <Link to="/Products">
-          <button className="page-button">Back to Products</button>
+          <button className="page-button"><strong>Back to Products</strong></button>
         </Link>
       </main>
       
