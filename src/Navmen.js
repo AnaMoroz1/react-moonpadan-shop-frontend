@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext';
-
+import AuthService from './services/auth.service';
 
 
 function Navmen() {
@@ -17,6 +17,9 @@ function Navmen() {
           <Link to="/">Home</Link>
         </li>
         <li>
+          <Link to="/">Registration/Login</Link>
+        </li>
+        <li>
           <Link to="/products">Products</Link>
         </li>
         <li>
@@ -27,6 +30,25 @@ function Navmen() {
           </Link>
         </li>
       </ul>
+      {currentUser ? (
+        <div className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link to="/profile" className="nav-link">{currentUser.username}</Link>
+          </li>
+          <li className="nav-item">
+            <a href="/login" className="nav-link" onClick={logOut}>LogOut</a>
+          </li>
+        </div>
+      ) : (
+        <div className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">Login</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/register" className="nav-link">Sign Up</Link>
+          </li>
+        </div>
+      )}
     </nav>
   );
 }
