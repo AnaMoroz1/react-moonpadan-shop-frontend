@@ -25,6 +25,13 @@ html, body {
 }
 
 /* Navigacijos meniu */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
 .navbar ul {
   list-style: none;
   display: flex;
@@ -51,7 +58,7 @@ html, body {
   border-radius: 5px;
 }
 
-/* Logotipo stiliai */
+/* Logo styles */
 .image-logo {
   display: flex;
   flex-direction: column;
@@ -86,7 +93,7 @@ html, body {
   animation: fadeIn 2s ease-in-out;
 }
 
-/* Pagrindinis baneris */
+/* Main banner styles */
 .main-banner {
   background-size: cover;
   background-position: center;
@@ -124,29 +131,17 @@ html, body {
 .main-banner button:hover {
   background-color: #888;
 }
-.image-container {
-  display: flex;
-  justify-self: center;
-  align-items: center;
-  height: 100%;
-  opacity: 0.7;
-}
-.centered-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-}
-/* Produktų sąrašas */
+
+/* Product styles */
 
 .product-list-container {
  text-align: center; 
- 
-}
-
+ }
 
 .attribute-container {
 margin-top: 10px;
 }
+
 li{
   font-size: 0.8rem;
   margin: 5px 0;
@@ -169,20 +164,13 @@ li{
   max-width: 300px;
 }
 .product-item:hover {
-  transform: scale (1.05); /* šiektiek padidinti teksta uzvedant ant jo*/
+  transform: scale (1.05); /* slightly enlarge the text by hovering over it*/
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
-.product-item h2{
+.product-item h2, .product-item p {
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
-}
-
-.product-item p {
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
-
 }
 .product-item select{
   padding: 5px;
@@ -234,7 +222,7 @@ li{
   
 }
 
-/* Krepšelio puslapis */
+/* Cart styles */
 .cart-page {
   padding: 50px;
   color: #111;

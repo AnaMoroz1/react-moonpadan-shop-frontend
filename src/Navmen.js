@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext';
-import AuthService from './services/auth.service';
+import HomeLogin from './components/HomeLogin';
 
 
-function Navmen() {
+
+function Navmen({ currentUser, logOut, showModeratorBoard, showAdminBoard}) {
   const {cart} = useContext(CartContext);
   
   const getTotalItemsInCart = ()=> {
-    return cart.reduce((total,item) => total + item.quantity, 0);
+    return (cart || []).reduce((total,item) => total + item.quantity, 0);
   };
   return (
     <nav className="navbar">
@@ -16,9 +17,7 @@ function Navmen() {
         <li>
           <Link to="/">Home</Link>
         </li>
-        <li>
-          <Link to="/">Registration/Login</Link>
-        </li>
+        
         <li>
           <Link to="/products">Products</Link>
         </li>
@@ -29,6 +28,16 @@ function Navmen() {
          ({getTotalItemsInCart()})
           </Link>
         </li>
+        {showModeratorBoard && (
+          <li>
+            <Link to="/mod">Moderator Board</Link>
+          </li>
+        )}
+        {showAdminBoard && (
+          <li>
+            <Link to="/admin">Admin Board</Link>
+          </li>
+        )}
       </ul>
       {currentUser ? (
         <div className="navbar-nav ml-auto">
