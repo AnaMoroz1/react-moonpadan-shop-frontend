@@ -2,21 +2,28 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/api/auth/";
 
-const register = (username, email, password) => {
-    return axios.post(API_URL + "signup", {
+const register = async (username, email, password) => {
+  try {
+    const response = await axios.post(API_URL + "signup", {
+  
         username, 
         email, 
         password,
    });
+   return response.data;
+  }catch (error) {
+    console.error ("Registartion error:", error);
+    throw error;
+  }
 };
 
-const login = (username, password) => {
-    return axios
-            .post(API_URL + "signin", {
+const login = async (username, password) => {
+  try {
+const response = await axios.post(API_URL + "signin", {
               username,
               password,
-            })
-      .then((response) => {
+            });
+      
         console.log("We got Response: ", response );
         if (response.data.accessToken) {
          
@@ -24,17 +31,20 @@ const login = (username, password) => {
         }
   
         return response.data;
-      });
-  };
-  
+      } catch(error) {
+        console.error("Login error: ", error);
+        throw error;  // Error handling
+      
+      }};
+// User logout
   const logout = () => {
     localStorage.removeItem("user");
   };
-
+// Get the current user
   const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user"));
   };
-
+// Export an object with methods
   const AuthService = {
     register,
     login,

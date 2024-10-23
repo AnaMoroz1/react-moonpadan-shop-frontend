@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState, useEffect }from "react";
 import AuthService from "../services/auth.service";
+import '../styles/Moon.css';
 
 const Profile = () => {
-    const currentUser = AuthService.getCurrentUser();
+    const [currentUser, setCurrentUser] = useState(null);
+  
+    useEffect(() => {
+      const user = AuthService.getCurrentUser();
+      if (user) {
+        setCurrentUser(user);
+      }
+    }, []);
+  
+    if (!currentUser) {
+      return <div>Loading...</div>;
+    }
+  
+    // Make sure roles is defined and is an array before iterating
+    const roles = currentUser.roles || [];
+  
+    
     return(
         <div className="container">
             <header className="jumbotron">
@@ -20,14 +37,15 @@ const Profile = () => {
                  <p>
                  <strong>Email:</strong> {currentUser.email}
                  </p>
-
-                    <strong>Authorities:</strong>
-                    <ul>
-                        {currentUser.roles &&
-                         currentUser.roles.map((role, index) =>
-                             <li key={index}>{role}</li>)
-                        }
-                    </ul>
+                 <strong>Authorities:</strong>
+                 <ul>
+                 {roles.length > 0 ? (
+                 roles.map((role, index) => 
+                 <li key={index}>{role}</li>)
+            ) : (
+                <li>No roles assigned</li>
+        )}
+                </ul>
          </div>
     );
 
