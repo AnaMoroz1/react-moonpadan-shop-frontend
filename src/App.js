@@ -17,9 +17,11 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
+import ErrorBoundary from './ErrorBoundary';
 
 
 const App = () => {
+  
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -36,9 +38,7 @@ const App = () => {
 
   const logOut = () => {
     AuthService.logout();
-    setCurrentUser({});
-    setShowModeratorBoard(false);
-    setShowAdminBoard(false);
+    
   };
 
 return (
@@ -53,6 +53,7 @@ return (
         />
   
   <main className="content"> {/* We use the .content class */}
+  <ErrorBoundary>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ShoppingCartController show= "products"/>} /> 
@@ -64,6 +65,7 @@ return (
             <Route path="/mod" element={<BoardModerator />} />
             <Route path="/admin" element={<BoardAdmin />} />
           </Routes>
+          </ErrorBoundary>
         </main>
         <Footer />
       </div>
