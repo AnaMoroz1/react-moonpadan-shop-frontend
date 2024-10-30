@@ -151,8 +151,9 @@ html, body {
   object-fit: cover;
   top: 0;
   left: 0;
-  z-index: -1.2; /* Размещает изображение под текстом */
+  z-index: -1.2; /* Places the image below the text */
 }
+
 
 .text-overlay {
   position: absolute;
@@ -161,7 +162,7 @@ html, body {
   transform: translate(-50%, -50%);
   color: rgb(251, 251, 251);
   text-align: center;
-  background: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон под текст */
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent background under text */
   padding: 20px;
   border-radius: 10px;
 }
@@ -328,7 +329,7 @@ li{
   background-color: #aaa;
 }
 
-/* Bendri mygtukų stiliai */
+/* Common button styles */
 .page-button {
   background-color: #f4f0ebbe;
   color: #080808;

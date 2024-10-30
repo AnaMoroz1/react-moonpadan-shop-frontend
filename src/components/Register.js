@@ -46,7 +46,7 @@ const Register = () => {
       // Check if response has a message property(response) => {
         setMessage(response?.message || "Registartion successful!");
         setSuccessful(true);
-        navigate("/login");
+        navigate("/login", { replace: true });
       } catch (error) {
         // Improved error handling
       const resMessage =
@@ -71,11 +71,13 @@ const Register = () => {
           {!successful && (
             <div>
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="register-username">Username</label>
                 <input
                   type="text"
+                  id="register-username"
                   className="form-control"
                   {...register("username")}
+                  autoComplete="username"
                 />
                 {errors.username && (
                   <div className="alert alert-danger" role="alert">
@@ -88,8 +90,10 @@ const Register = () => {
                 <label htmlFor="email">Email</label>
                 <input
                   type="text"
+                  id="register-email"
                   className="form-control"
                   {...register("email")}
+                  autoComplete="email"
                 />
                 {errors.email && (
                   <div className="alert alert-danger" role="alert">
@@ -99,11 +103,13 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="register-password">Password</label>
                 <input
                   type="password"
+                  id="register-password"
                   className="form-control"
                   {...register("password")}
+                  autoComplete="new-password"
                 />
                 {errors.password && (
                   <div className="alert alert-danger" role="alert">

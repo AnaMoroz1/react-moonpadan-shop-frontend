@@ -17,8 +17,9 @@ const Login = () => {
             navigate("/profile", { replace: true });
         } catch (error) {
             const resMessage =
-            error.response?.data?.message || error.message || "Login failed. Please try again.";
-            setMessage(resMessage);
+            error.response?.data?.message || error.message ||
+            "Login failed. Please try again.";
+        setMessage(resMessage);
         }
     };
 
@@ -33,15 +34,15 @@ const Login = () => {
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="login-username">Username</label>
                         <input
                             type="text"
-                            id="username"
+                            id="login-username"
                             className="form-control"
                             {...register("username", { required: "This field is required!" })}
                             autoComplete="username"
                         />
-                        {errors.username && errors.username.message &&(
+                        {errors.username && (
                             <div className="alert alert-danger" role="alert">
                                 {errors.username.message}
                             </div>
@@ -49,10 +50,10 @@ const Login = () => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="login-password">Password</label>
                         <input
                             type="password"
-                            id="password"
+                            id="login-password"
                             className="form-control"
                             {...register("password", { required: "This field is required!" })}
                             autoComplete="current-password"
