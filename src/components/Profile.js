@@ -7,7 +7,7 @@ const Profile = () => {
   
     useEffect(() => {
       const user = AuthService.getCurrentUser();
-      if (user) {
+      if (user && user.accessToken) {
         setCurrentUser(user);
       }
     }, []);
@@ -29,7 +29,7 @@ const Profile = () => {
             </header>
                 <p>
                 <strong>Token:</strong>{currentUser.accessToken.substring(0,20)} ...{" "}
-                    {currentUser.accesToken.substr(currentUser.accessToken.length -20)}
+                    {currentUser.accessToken.substr(currentUser.accessToken.length -20)}
                 </p>
                 <p>
                  <strong>Id:</strong> {currentUser.id}

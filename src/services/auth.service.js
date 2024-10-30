@@ -18,7 +18,8 @@ const register = async (username, email, password) => {
 const login = async (username, password) => {
   try {
         const response = await axios.post(`${API_URL}signin`, {username, password});
-           
+        console.log("Login response:", response.data);
+        
          // Ensure that the response contains an access token  
         if (response.data.accessToken) {
          localStorage.setItem("user", JSON.stringify(response.data));  // Store user data in localStorage

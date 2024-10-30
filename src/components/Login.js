@@ -17,9 +17,7 @@ const Login = () => {
             navigate("/profile", { replace: true });
         } catch (error) {
             const resMessage =
-                (error.response && error.response.data && error.response.data.message) ||
-                error.message ||
-                error.toString();
+            error.response?.data?.message || error.message || "Login failed. Please try again.";
             setMessage(resMessage);
         }
     };
@@ -38,8 +36,10 @@ const Login = () => {
                         <label htmlFor="username">Username</label>
                         <input
                             type="text"
+                            id="username"
                             className="form-control"
                             {...register("username", { required: "This field is required!" })}
+                            autoComplete="username"
                         />
                         {errors.username && errors.username.message &&(
                             <div className="alert alert-danger" role="alert">
@@ -52,8 +52,10 @@ const Login = () => {
                         <label htmlFor="password">Password</label>
                         <input
                             type="password"
+                            id="password"
                             className="form-control"
                             {...register("password", { required: "This field is required!" })}
+                            autoComplete="current-password"
                         />
                         {errors.password && (
                             <div className="alert alert-danger" role="alert">
